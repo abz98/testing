@@ -110,7 +110,7 @@ const FormUser = (props) => {
   const { formClassName, formSuccessMessage, formErrorMessage } = formData;
 
   return (
-    <Form className={formClassName} onSubmit={handleSubmit}>
+    <Form data-testid="form-user" className={formClassName}  onSubmit={handleSubmit }>
       <Form.Input
         label='Name'
         type='text'
@@ -153,7 +153,7 @@ const FormUser = (props) => {
       </Form.Group>
       <Message success color='green'    header='Nice one!' content={formSuccessMessage} />
       <Message warning color='yellow'   header='Woah!'     content={formErrorMessage} />
-      <Button color={props.buttonColor} floated='right'>{props.buttonSubmitTitle}</Button>
+      <Button data-testid="button-submit-title" color={props.buttonColor} floated='right'>{props.buttonSubmitTitle}</Button>
       <br /><br /> 
     </Form>
   );

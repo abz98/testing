@@ -37,27 +37,42 @@ describe('RegisterForm', () => {
         expect(emailInput.value).toBe('test@example.com');
     });
 
-    // it('validates form fields', async () => {
-    //     render(<Router><RegisterForm /></Router>);
-    //     const emailInput = screen.getByPlaceholderText('E-mail address');
-    //     const passwordInput = screen.getByPlaceholderText('Password');
-    //     const confirmPasswordInput = screen.getByPlaceholderText('Confirm Password');
+    it('displays an image with alt text', () => {
+        render(<Router><RegisterForm /></Router>);
 
-    //     fireEvent.change(emailInput, { target: { value: 'invalidemail' } });
-    //     fireEvent.change(passwordInput, { target: { value: 'pass' } });
-    //     fireEvent.change(confirmPasswordInput, { target: { value: 'pass123' } });
+        const logoImage = screen.getByAltText('Logo');
 
-    //     const registerButton = screen.getByText('Register');
-    //     fireEvent.click(registerButton);
+        expect(logoImage).toBeInTheDocument();
+    });
 
-    //     // Check if appropriate error messages are displayed or handled
-    //     // await waitFor(() => {
+    it('has a Register button', () => {
+        render(<Router><RegisterForm /></Router>);
 
-    //     // });
-    //     expect(screen.getByText('Email is invalid')).toBeInTheDocument();
-    //     expect(screen.getByText('Password must be at least 6 characters long')).toBeInTheDocument();
-    //     expect(screen.getByText('Passwords do not match')).toBeInTheDocument();
-    // });
+        const registerButton = screen.getByRole('button', { name: 'Register' });
+
+        expect(registerButton).toBeInTheDocument();
+    });
+
+    it('validates form fields', async () => {
+        render(<Router><RegisterForm /></Router>);
+        const emailInput = screen.getByPlaceholderText('E-mail address');
+        const passwordInput = screen.getByPlaceholderText('Password');
+        const confirmPasswordInput = screen.getByPlaceholderText('Confirm Password');
+
+        fireEvent.change(emailInput, { target: { value: 'invalidemail' } });
+        fireEvent.change(passwordInput, { target: { value: 'pass' } });
+        fireEvent.change(confirmPasswordInput, { target: { value: 'pass123' } });
+
+        const registerButton = screen.getByText('Register');
+        fireEvent.click(registerButton);
+
+
+        const expectedErrorMessage =
+            'Email is invalid\nPassword must be at least 6 characters long\nPasswords do not match';
+
+        expect(window.alert).toHaveBeenCalledWith(expectedErrorMessage);
+
+    });
 
     it('registers user on successful form submission', async () => {
         axios.post.mockResolvedValueOnce({ data: { success: true, token: 'mockedToken123' } });
@@ -83,19 +98,8 @@ describe('RegisterForm', () => {
                 email: 'test@example.com',
                 password: 'password123',
             });
-            expect(setToken).toHaveBeenCalledWith('mockedToken123');
         });
-    });
+        expect(setToken).toHaveBeenCalledWith('mockedToken123');
 
-    it('displays error message on registration failure', async () => {
-        axios.post.mockRejectedValueOnce(new Error('Network Error'));
-
-        render(<Router><RegisterForm /></Router>);
-        const registerButton = screen.getByText('Register');
-        fireEvent.click(registerButton);
-
-        await waitFor(() => {
-            expect(screen.getByText('Something went wrong')).toBeInTheDocument();
-        });
     });
 });

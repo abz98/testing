@@ -75,7 +75,7 @@ const App = () => {
 
   return (
     <div>
-      <div className='App'>
+      <div className='App' data-testid="app-body">
         <div className='App-header'>
           <img src={logo} className='App-logo' alt='logo' />
           <h1 className='App-intro'>MERN CRUD</h1>

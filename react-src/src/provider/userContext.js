@@ -1,9 +1,9 @@
 // import axios from 'axios';
 
+import axios from "axios";
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 const AuthContext = createContext();
-
 const BASE_URL = 'http://localhost:8080/api/';
 
 export const authApi = axios.create({

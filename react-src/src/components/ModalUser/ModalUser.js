@@ -5,10 +5,11 @@ import FormUser from '../FormUser/FormUser';
 const ModalUser = (props) => {
   return (
     <Modal
-      trigger={<Button color={props.buttonColor}>{props.buttonTriggerTitle}</Button>}
+      trigger={<Button data-testid="modalButton" color={props.buttonColor}>{props.buttonTriggerTitle}</Button>}
       dimmer='inverted'
       size='tiny'
       closeIcon='close'
+      data-testid="app-body"
     >
       <Modal.Header>{props.headerTitle}</Modal.Header>
       <Modal.Content>

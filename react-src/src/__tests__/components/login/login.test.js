@@ -56,7 +56,7 @@ describe('LoginForm', () => {
         jest.spyOn(require('react-router-dom'), 'useNavigate').mockReturnValue(navigate);
 
         const setToken = jest.fn();
-        // useAuth.mockReturnValue({ setToken }); // Mock the return value of useAuth
+        // useAuth.mockReturnValue({ setToken }); 
         setToken(mockedToken)
 
         render(<Router><LoginForm /></Router>);
@@ -110,6 +110,7 @@ describe('LoginForm', () => {
             expect(alert).toHaveBeenCalledWith("Something went wrong while logging in.");
         });
     });
+    // "__tests__/components/FormUser","__tests__/components/modalUser"
 
 
 });

@@ -27,7 +27,7 @@
       "^.+\\.jsx?$": "babel-jest"
     },
     "watchPathIgnorePatterns": [
-      "__tests__/components/FormUser","__tests__/components/modalUser"
+      "__tests__/components/FormUser"
     ],
     "transformIgnorePatterns": [
       "<rootDir>/node_modules/(?!(axios)/)"
