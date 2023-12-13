@@ -6,9 +6,11 @@ const ModalConfirmDelete = (props) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleOpen = () => setModalOpen(true);
+
   const handleClose = () => setModalOpen(false);
 
   const handleSubmit = (e) => {
+    
     const params = e.target.getAttribute('data-userID');
 
     axios({

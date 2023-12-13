@@ -19,10 +19,20 @@
   "scripts": {
     "start": "REACT_APP_API_URL=http://127.0.0.1:3000 PORT=4200 react-scripts start",
     "build": "BUILD_PATH='../public' react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test ",
     "eject": "react-scripts eject"
   },
- 
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    },
+    "watchPathIgnorePatterns": [
+      "__tests__/components/FormUser","__tests__/components/modalUser"
+    ],
+    "transformIgnorePatterns": [
+      "<rootDir>/node_modules/(?!(axios)/)"
+    ]
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -42,6 +52,9 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/core": "^7.23.6",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/preset-env": "^7.23.6",
+    "babel-jest": "^29.7.0"
   }
 }

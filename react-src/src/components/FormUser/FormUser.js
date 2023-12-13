@@ -46,6 +46,7 @@ const FormUser = (props) => {
   };
 
   const handleSubmit = (e) => {
+
     e.preventDefault();
 
     const user = {
@@ -56,9 +57,10 @@ const FormUser = (props) => {
     };
 
     const method = props.userID ? 'put' : 'post';
+    
     const params = props.userID ? props.userID : '';
 
-    axios({
+    axios({     
       method: method,
       responseType: 'json',
       url: `${props.server}/api/users/${params}`,
@@ -149,10 +151,10 @@ const FormUser = (props) => {
           onChange={handleSelectChange}
         />
       </Form.Group>
-      <Message success color='green' header='Nice one!' content={formSuccessMessage} />
-      <Message warning color='yellow' header='Woah!' content={formErrorMessage} />
+      <Message success color='green'    header='Nice one!' content={formSuccessMessage} />
+      <Message warning color='yellow'   header='Woah!'     content={formErrorMessage} />
       <Button color={props.buttonColor} floated='right'>{props.buttonSubmitTitle}</Button>
-      <br /><br /> {/* Yikes! Deal with Semantic UI React! */}
+      <br /><br /> 
     </Form>
   );
 };
