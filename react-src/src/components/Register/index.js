@@ -88,6 +88,7 @@ const RegisterForm = () => {
               placeholder="E-mail address"
               name="email"
               value={email}
+              aria-label="email-label"
               onChange={handleChange}
             />
             <Form.Input

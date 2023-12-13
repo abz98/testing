@@ -55,7 +55,9 @@ describe('RegisterForm', () => {
 
     it('validates form fields', async () => {
         render(<Router><RegisterForm /></Router>);
-        const emailInput = screen.getByPlaceholderText('E-mail address');
+        const emailInput = screen.getByLabelText('email-label');
+
+        // const emailInput = screen.getByPlaceholderText('E-mail address');
         const passwordInput = screen.getByPlaceholderText('Password');
         const confirmPasswordInput = screen.getByPlaceholderText('Confirm Password');
 
@@ -89,6 +91,8 @@ describe('RegisterForm', () => {
         fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
         fireEvent.change(passwordInput, { target: { value: 'password123' } });
         fireEvent.change(confirmPasswordInput, { target: { value: 'password123' } });
+
+
 
         const registerButton = screen.getByText('Register');
         fireEvent.click(registerButton);

@@ -9,6 +9,7 @@ import ModalUser from '../ModalUser/ModalUser';
 import logo from '../../mern-logo.png';
 import './App.css';
 import { useAuth } from '../../provider/userContext';
+import Header from '../Header';
 
 const App = () => {
   const server = process.env.REACT_APP_API_URL || '';
@@ -73,22 +74,11 @@ const App = () => {
         : `${online - 1} person is online`;
   }
 
+
+
   return (
     <div>
-      <div className='App' data-testid="app-body">
-        <div className='App-header'>
-          <img src={logo} className='App-logo' alt='logo' />
-          <h1 className='App-intro'>MERN CRUD</h1>
-          <p>
-            A simple records system using MongoDB, Express.js, React.js, and
-            Node.js. REST API was implemented on the back-end.
-            <br />
-            CREATE, READ, UPDATE, and DELETE operations are updated in
-            real-time to online users using Socket.io.
-          </p>
-          <Button onClick={() => setToken()}>Logout</Button>
-        </div>
-      </div>
+      <Header setToken={setToken} logo={logo} />
       <Container>
         <ModalUser
           headerTitle='Add User'
