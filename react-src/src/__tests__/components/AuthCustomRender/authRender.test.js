@@ -3,7 +3,7 @@ import { screen } from '@testing-library/react';
 import ModalUser from '../../../components/ModalUser/ModalUser';
 import { render } from '../../../testUtils/customRouterRender';
 
-describe('Testing Custom render', () => {
+describe('Testing Custom render for Authenticate Component', () => {
     const defaultProps = {
         buttonColor: 'blue',
         buttonTriggerTitle: 'Add New',

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { render, act, screen, waitFor ,} from '@testing-library/react';
+import { render, act, screen, waitFor, } from '@testing-library/react';
 import AuthProvider, { useAuth } from '../../../provider/userContext';
 import userEvent from '@testing-library/user-event';
 
@@ -12,7 +12,7 @@ const TestComponent = () => {
 
 
 describe('testing custom hook useAuth', () => {
-  it('provides authentication context to useAuth',async () => {
+  it('provides authentication context to useAuth', async () => {
 
 
     render(
@@ -23,12 +23,10 @@ describe('testing custom hook useAuth', () => {
 
     expect(screen.getByTestId('token')).toHaveTextContent('');
 
-    act(() => {
-      userEvent.click(screen.getByTestId('token'));
-    });
-    
+    userEvent.click(screen.getByTestId('token'));
+
     await waitFor(() => {
-    expect(screen.getByTestId('token')).toHaveTextContent('test-token');
+      expect(screen.getByTestId('token')).toHaveTextContent('test-token');
     })
   });
 });
