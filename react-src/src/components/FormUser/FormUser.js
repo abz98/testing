@@ -4,6 +4,7 @@ import axios from 'axios';
 
 const genderOptions = [
   { key: 'm', text: 'Male', value: 'm' },
+  { key: 'pineapple', text: 'pineapple', value: 'pineapple' },
   { key: 'f', text: 'Female', value: 'f' },
   { key: 'o', text: 'Do Not Disclose', value: 'o' }
 ];
@@ -41,8 +42,8 @@ const FormUser = (props) => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSelectChange = (e, { value }) => {
-    setFormData({ ...formData, gender: value });
+  const handleSelectChange = (e) => {
+    setFormData({ ...formData, gender: e.target.value });
   };
 
   const handleSubmit = (e) => {
@@ -142,14 +143,23 @@ const FormUser = (props) => {
           value={formData.age}
           onChange={handleInputChange}
         />
-        <Form.Field
+        <select
+      value={formData.gender}
+      label="Gender"
+      onChange={handleSelectChange}
+    >
+      {genderOptions.map(option => (
+        <option key={option.key} value={option.value}>{option.text}</option>
+      ))}
+    </select>
+        {/* <Form.Field
           control={Select}
           label='Gender'
           options={genderOptions}
           placeholder='Gender'
           value={formData.gender}
           onChange={handleSelectChange}
-        />
+        /> */}
       </Form.Group>
       <Message success color='green'    header='Nice one!' content={formSuccessMessage} />
       <Message warning color='yellow'   header='Woah!'     content={formErrorMessage} />

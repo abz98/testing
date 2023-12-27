@@ -53,6 +53,23 @@ describe('RegisterForm', () => {
         expect(registerButton).toBeInTheDocument();
     });
 
+
+    it('validates  fields if inputs are not correct', async () => {
+        render(<Router><RegisterForm /></Router>);
+        const emailInput = screen.getByLabelText('email-label');
+
+
+        fireEvent.change(emailInput, { target: { value: 'invalid@gmial.com' } });
+
+
+
+        expect(emailInput.value).toMatch(/\S+@\S+\.\S+/);
+        expect(emailInput.value).toMatch(/^[^\s]+(\s+[^\s]+)*$/);
+
+
+    });
+
+
     it('validates form fields', async () => {
         render(<Router><RegisterForm /></Router>);
         const emailInput = screen.getByLabelText('email-label');
@@ -61,12 +78,19 @@ describe('RegisterForm', () => {
         const passwordInput = screen.getByPlaceholderText('Password');
         const confirmPasswordInput = screen.getByPlaceholderText('Confirm Password');
 
-        fireEvent.change(emailInput, { target: { value: 'invalidemail' } });
+        fireEvent.change(emailInput, { target: { value: 'invalidgialcom' } });
+
         fireEvent.change(passwordInput, { target: { value: 'pass' } });
+
         fireEvent.change(confirmPasswordInput, { target: { value: 'pass123' } });
 
+
         const registerButton = screen.getByText('Register');
-        fireEvent.click(registerButton);
+
+        // fireEvent.focus(registerButton)
+
+        fireEvent.keyPress(registerButton, { key: 'Space', code: 'Space', keyCode: 13 })
+
 
 
         const expectedErrorMessage =

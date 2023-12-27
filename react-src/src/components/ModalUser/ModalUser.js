@@ -9,6 +9,7 @@ const ModalUser = (props) => {
       dimmer='inverted'
       size='tiny'
       closeIcon='close'
+    
       data-testid="app-body"
     >
       <Modal.Header>{props.headerTitle}</Modal.Header>
